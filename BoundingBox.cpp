@@ -31,6 +31,7 @@ bool BoundingBox::IsTriangleWithin(Triangle triangle)
 			return false;
 		}
 	}
+	return true;
 }
 
 bool BoundingBox::IsPointWithin(XMFLOAT3 point)
