@@ -11,9 +11,9 @@ using namespace DirectX;
 int main()
 {
 	BoundingBox box(XMFLOAT2(0, 0), XMFLOAT2(10, 10));
-	Triangle triangle(XMFLOAT3(1, 1, 0), XMFLOAT3(1, 3, 0), XMFLOAT3(4, 1, 0));
+	Triangle triangle(XMFLOAT3(1, 0, 1), XMFLOAT3(1, 0, 1), XMFLOAT3(4, 0, 1));
 
-	cout << box.IsTriangleWithin(triangle) << endl;
+	cout << box.IsTriangleIntersecting(triangle) << endl;
 
 	Object object("assets/triangle.obj");
 
@@ -21,9 +21,9 @@ int main()
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			cout << object.faces[i].vertices[j].x << " "
-				<< object.faces[i].vertices[j].y << " "
-				<< object.faces[i].vertices[j].z << endl;
+			cout	<< object.faces[i].vertices[j].x << " "
+					<< object.faces[i].vertices[j].y << " "
+					<< object.faces[i].vertices[j].z << endl;
 		}
 	}
 	

@@ -2,6 +2,7 @@
 #include <DirectXMath.h>
 
 #include "Triangle.h"
+#include "Object.h"
 
 class BoundingBox
 {
@@ -14,7 +15,9 @@ public:
 
 	DirectX::XMFLOAT2 GetPosition();
 	DirectX::XMFLOAT2 GetSize();
-	bool IsTriangleWithin(Triangle triangle);
+
+	bool IsObjectIntersecting(Object object);
+	bool IsTriangleIntersecting(Triangle triangle);
 	bool IsPointWithin(DirectX::XMFLOAT3 point);
 };
 

@@ -22,20 +22,33 @@ XMFLOAT2 BoundingBox::GetSize()
 	return size;
 }
 
-bool BoundingBox::IsTriangleWithin(Triangle triangle)
+bool BoundingBox::IsObjectIntersecting(Object object)
+{
+	for (int i = 0; i < object.faces.size(); i++)
+	{
+		if (IsTriangleIntersecting(object.faces[i]))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool BoundingBox::IsTriangleIntersecting(Triangle triangle)
 {
 	for (int i = 0; i < 3; i++)
 	{
-		if (!IsPointWithin(triangle.vertices[i]))
+		if (IsPointWithin(triangle.vertices[i]))
 		{
-			return false;
+			return true;
 		}
 	}
-	return true;
+	return false;
 }
 
 bool BoundingBox::IsPointWithin(XMFLOAT3 point)
 {
+	//Ignore Y value
 	return	position.x < point.x && position.x + size.x > point.x &&
-			position.y < point.y && position.y + size.y > point.y;
+			position.y < point.z && position.y + size.y > point.z;
 }
