@@ -19,5 +19,7 @@ public:
 	bool IsObjectIntersecting(Object object);
 	bool IsTriangleIntersecting(Triangle triangle);
 	bool IsPointWithin(DirectX::XMFLOAT3 point);
+
+	BoundingBox GetChildBoundingBox(int childQuadrant);
 };
 

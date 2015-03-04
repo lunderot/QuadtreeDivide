@@ -52,3 +52,29 @@ bool BoundingBox::IsPointWithin(XMFLOAT3 point)
 	return	position.x < point.x && position.x + size.x > point.x &&
 			position.y < point.z && position.y + size.y > point.z;
 }
+
+BoundingBox BoundingBox::GetChildBoundingBox(int childQuadrant)
+{
+	XMFLOAT2 childPosition;
+	XMFLOAT2 childSize = XMFLOAT2(size.x/2, size.y/2);
+
+	switch (childQuadrant)
+	{
+	case 0:
+		childPosition = XMFLOAT2(position.x + size.x / 2,	position.y + size.y / 2);
+		break;
+	case 1:
+		childPosition = XMFLOAT2(position.x,				position.y + size.y / 2);
+		break;
+	case 2:
+		childPosition = XMFLOAT2(position.x,				position.y);
+		break;
+	case 3:
+		childPosition = XMFLOAT2(position.x + size.x / 2,	position.y);
+		break;
+	default:
+		break;
+	}
+
+	return BoundingBox(position, size);
+}
