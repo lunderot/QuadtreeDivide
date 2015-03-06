@@ -3,8 +3,10 @@
 using namespace std;
 using namespace DirectX;
 
-Object::Object(string filename)
+Object::Object(string filename, XMFLOAT4X4 worldTransform)
 {
+	this->worldTransform = worldTransform;
+
 	bool result = true;
 	ifstream file(filename);
 
