@@ -1,30 +1,34 @@
 #include <iostream>
 #include <DirectXMath.h>
+#include <vector>
 
 #include "BoundingBox.h"
 #include "Triangle.h"
 #include "Object.h"
+#include "Quadtree.h"
+#include "ObjectLoader.h"
 
 using namespace std;
 using namespace DirectX;
 
 int main()
 {
-	BoundingBox box(XMFLOAT2(0, 0), XMFLOAT2(10, 10));
-	Triangle triangle(XMFLOAT3(1, 0, 1), XMFLOAT3(1, 0, 1), XMFLOAT3(4, 0, 1));
-
-	cout << box.IsTriangleIntersecting(triangle) << endl;
-
-	Object object("assets/triangle.obj");
-
-	for (int i = 0; i < object.faces.size(); i++)
+	try
 	{
-		for (int j = 0; j < 3; j++)
-		{
-			cout	<< object.faces[i].vertices[j].x << " "
-					<< object.faces[i].vertices[j].y << " "
-					<< object.faces[i].vertices[j].z << endl;
-		}
+		ObjectLoader loader("assets/objectlist.txt");
+
+
+		//Load objects and thier world transform
+		//Make a boundingbox and test if the object is inside
+		//Add it to the quadtree
+		//Save to file
+
+
+		
+	}
+	catch (std::exception e)
+	{
+		cout << e.what() << endl;
 	}
 	
 

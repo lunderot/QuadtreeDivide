@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectLoader.h" />
     <ClInclude Include="Quadtree.h" />
     <ClInclude Include="Triangle.h" />
   </ItemGroup>
@@ -73,8 +74,12 @@
     <ClCompile Include="BoundingBox.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectLoader.cpp" />
     <ClCompile Include="Quadtree.cpp" />
     <ClCompile Include="Triangle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="assets\objectlist.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
