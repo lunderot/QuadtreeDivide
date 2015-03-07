@@ -17,14 +17,13 @@ int main()
 	{
 		ObjectLoader loader("assets/objectlist.txt");
 
+		Quadtree tree(BoundingBox(XMFLOAT2(0, 0), XMFLOAT2(256, 256)));
 
-		//Load objects and thier world transform
-		//Make a boundingbox and test if the object is inside
-		//Add it to the quadtree
-		//Save to file
-
-
-		
+		for (int i = 0; i < loader.GetSize(); i++)
+		{
+			tree.Insert(loader.GetAt(i));
+		}
+		tree.SaveToFile("assets/tree.txt");
 	}
 	catch (std::exception e)
 	{
