@@ -59,6 +59,10 @@ void Quadtree::Insert(Object* object, Node* currentNode, BoundingBox box, int de
 			currentNode->objects.push_back(object);
 		}
 	}
+	else if (depth == MAX_DEPTH && box.IsObjectWithin(*object))
+	{
+		currentNode->objects.push_back(object);
+	}
 }
 
 void Quadtree::Insert(Object* object)
