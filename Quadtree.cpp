@@ -36,6 +36,17 @@ void Quadtree::Clean(Node* currentNode)
 
 void Quadtree::SaveToFile(std::string filename)
 {
+	ofstream file(filename);
+	if (file.good())
+	{
+		WriteNode(file, root);
+	}
+	file.close();
+}
+
+void Quadtree::WriteNode(std::ofstream& file, Node* currentNode)
+{
+	
 }
 
 void Quadtree::Insert(Object* object, Node* currentNode, BoundingBox box, int depth)
@@ -56,11 +67,15 @@ void Quadtree::Insert(Object* object, Node* currentNode, BoundingBox box, int de
 		}
 		if (!result) //Reached the smallest bounding box the object can fit into
 		{
+			cout << "DEBUG: Added object in BoundingBox((" << box.GetPosition().x << " " << box.GetPosition().y << "), (" << box.GetSize().x << " " << box.GetSize().y << "))" <<
+					" at depth " << depth << endl;
 			currentNode->objects.push_back(object);
 		}
 	}
 	else if (depth == MAX_DEPTH && box.IsObjectWithin(*object))
 	{
+		cout << "DEBUG: Added object in BoundingBox((" << box.GetPosition().x << " " << box.GetPosition().y << "), (" << box.GetSize().x << " " << box.GetSize().y << "))" <<
+			" at max depth " << depth << endl;
 		currentNode->objects.push_back(object);
 	}
 }

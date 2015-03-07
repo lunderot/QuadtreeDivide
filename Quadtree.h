@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iostream>
 
 #include "Object.h"
 #include "BoundingBox.h"
@@ -28,5 +29,6 @@ public:
 private:
 	void Clean(Node* currentNode);
 	void Insert(Object* object, Node* currentNode, BoundingBox box, int depth);
+	void WriteNode(std::ofstream& file, Node* currentNode);
 };
 
