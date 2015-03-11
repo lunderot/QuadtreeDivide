@@ -14,12 +14,17 @@ struct Vertex
 
 class Object
 {
+private:
+	std::string modelFilename;
+	std::string textureFilename;
 public:
 	DirectX::XMFLOAT4X4 worldTransform;
 	std::vector<DirectX::XMFLOAT3> vertices;
 	std::vector<Triangle> faces;
 
-	Object(std::string modelFilename, DirectX::XMFLOAT4X4 worldTransform);
+	Object(std::string modelFilename, std::string textureFilename, DirectX::XMFLOAT4X4 worldTransform);
 	~Object();
+
+	friend std::ofstream& operator<<(std::ofstream& file, const Object& object);
 };
 
