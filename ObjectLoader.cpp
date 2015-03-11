@@ -19,7 +19,7 @@ ObjectLoader::ObjectLoader(std::string filename)
 					>> worldTransform.m[1][0] >> worldTransform.m[1][1] >> worldTransform.m[1][2] >> worldTransform.m[1][3]
 					>> worldTransform.m[2][0] >> worldTransform.m[2][1] >> worldTransform.m[2][2] >> worldTransform.m[2][3]
 					>> worldTransform.m[3][0] >> worldTransform.m[3][1] >> worldTransform.m[3][2] >> worldTransform.m[3][3];
-			objects.push_back(new Object(objectFilename, worldTransform));
+			objects.push_back(new Object(objectFilename, textureFilename, worldTransform));
 		}
 	}
 	file.close();
