@@ -29,8 +29,5 @@ int main()
 	{
 		cout << e.what() << endl;
 	}
-	
-
-	cin.get();
 	return 0;
 }

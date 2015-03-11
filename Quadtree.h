@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <DirectXMath.h>
 
 #include "Object.h"
 #include "BoundingBox.h"
@@ -14,6 +15,7 @@ private:
 	{
 	public:
 		Node();
+		~Node();
 		Node* child[4];
 		std::vector<Object*> objects;
 	};
@@ -30,5 +32,6 @@ private:
 	void Clean(Node* currentNode);
 	void Insert(Object* object, Node* currentNode, BoundingBox box, int depth);
 	void WriteNode(std::ofstream& file, Node* currentNode);
+	Node* ReadNode(std::ifstream& file);
 };
 
