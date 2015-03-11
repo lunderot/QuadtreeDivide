@@ -53,6 +53,16 @@ void Quadtree::SaveToFile(std::string filename)
 	file.close();
 }
 
+void Quadtree::ReadFromFile(std::string filename)
+{
+	ifstream file(filename);
+	if (file.good())
+	{
+		root = ReadNode(file);
+	}
+	file.close();
+}
+
 void Quadtree::WriteNode(std::ofstream& file, Node* currentNode)
 {
 	for (int i = 0; i < currentNode->objects.size(); i++)

@@ -26,6 +26,7 @@ public:
 	Quadtree(BoundingBox rootBoundingBox);
 	~Quadtree();
 	void SaveToFile(std::string filename);
+	void ReadFromFile(std::string filename);
 	void Insert(Object* object);
 
 private:
