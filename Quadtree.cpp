@@ -39,8 +39,8 @@ void Quadtree::Clean(Node* currentNode)
 		{
 			Clean(currentNode->child[i]);
 		}
+		delete currentNode;
 	}
-	delete currentNode;
 }
 
 void Quadtree::SaveToFile(std::string filename)
@@ -112,7 +112,7 @@ Quadtree::Node* Quadtree::ReadNode(std::ifstream& file)
 
 void Quadtree::Insert(Object* object, Node* currentNode, BoundingBox box, int depth)
 {
-	if (depth < MAX_DEPTH && box.IsObjectWithin(*object)) //Check if we haven't reched max depth and object is within the bounding box
+	if (depth < MAX_DEPTH && box.IsObjectWithin(*object)) //Check if we haven't reached max depth and object is within the bounding box
 	{
 		//Loop through the child bounding boxes
 		bool result = false;
@@ -121,7 +121,11 @@ void Quadtree::Insert(Object* object, Node* currentNode, BoundingBox box, int de
 			BoundingBox childBox = box.GetChildBoundingBox(i);
 			if (childBox.IsObjectWithin(*object)) //Found the child bounding box the object fits into
 			{
-				currentNode->child[i] = new Node();
+				if (!currentNode->child[i])
+				{
+					currentNode->child[i] = new Node();
+				}
+				
 				Insert(object, currentNode->child[i], childBox, depth + 1);
 				result = true;
 			}
