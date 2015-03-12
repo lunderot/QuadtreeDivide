@@ -19,9 +19,9 @@ public:
 
 	bool IsObjectIntersecting(const Object& object);
 	bool IsObjectWithin(const Object& object);
-	bool IsTriangleIntersecting(const Triangle& triangle);
-	bool IsTriangleWithin(const Triangle& triangle);
-	bool IsPointWithin(const DirectX::XMFLOAT3& point);
+	bool IsTriangleIntersecting(const Triangle& triangle, const DirectX::XMFLOAT4X4& worldTransform);
+	bool IsTriangleWithin(const Triangle& triangle, const DirectX::XMFLOAT4X4& worldTransform);
+	bool IsPointWithin(const DirectX::XMFLOAT3& point, const DirectX::XMFLOAT4X4& worldTransform);
 
 	BoundingBox GetChildBoundingBox(int childQuadrant);
 };

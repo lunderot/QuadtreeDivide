@@ -34,7 +34,7 @@ bool BoundingBox::IsObjectIntersecting(const Object& object)
 {
 	for (int i = 0; i < object.faces.size(); i++)
 	{
-		if (IsTriangleIntersecting(object.faces[i]))
+		if (IsTriangleIntersecting(object.faces[i], object.worldTransform))
 		{
 			return true;
 		}
@@ -46,7 +46,7 @@ bool BoundingBox::IsObjectWithin(const Object& object)
 {
 	for (int i = 0; i < object.faces.size(); i++)
 	{
-		if (!IsTriangleWithin(object.faces[i]))
+		if (!IsTriangleWithin(object.faces[i], object.worldTransform))
 		{
 			return false;
 		}
@@ -54,11 +54,11 @@ bool BoundingBox::IsObjectWithin(const Object& object)
 	return true;
 }
 
-bool BoundingBox::IsTriangleIntersecting(const Triangle& triangle)
+bool BoundingBox::IsTriangleIntersecting(const Triangle& triangle, const DirectX::XMFLOAT4X4& worldTransform)
 {
 	for (int i = 0; i < 3; i++)
 	{
-		if (IsPointWithin(triangle.vertices[i]))
+		if (IsPointWithin(triangle.vertices[i], worldTransform))
 		{
 			return true;
 		}
@@ -66,11 +66,11 @@ bool BoundingBox::IsTriangleIntersecting(const Triangle& triangle)
 	return false;
 }
 
-bool BoundingBox::IsTriangleWithin(const Triangle& triangle)
+bool BoundingBox::IsTriangleWithin(const Triangle& triangle, const DirectX::XMFLOAT4X4& worldTransform)
 {
 	for (int i = 0; i < 3; i++)
 	{
-		if (!IsPointWithin(triangle.vertices[i]))
+		if (!IsPointWithin(triangle.vertices[i], worldTransform))
 		{
 			return false;
 		}
@@ -78,11 +78,17 @@ bool BoundingBox::IsTriangleWithin(const Triangle& triangle)
 	return true;
 }
 
-bool BoundingBox::IsPointWithin(const XMFLOAT3& point)
+bool BoundingBox::IsPointWithin(const XMFLOAT3& point, const DirectX::XMFLOAT4X4& worldTransform)
 {
+	XMMATRIX tempMatrix = XMLoadFloat4x4(&worldTransform);
+	XMVECTOR tempPoint = XMLoadFloat3(&point);
+	XMVECTOR transformedPoint = XMVector3Transform(tempPoint, tempMatrix);
+	XMFLOAT3 result;
+	XMStoreFloat3(&result, transformedPoint);
+
 	//Ignore Y value - the up and down direction ingame
-	return	position.x < point.x && position.x + size.x > point.x &&
-			position.y < point.z && position.y + size.y > point.z;
+	return	position.x <= result.x && position.x + size.x >= result.x &&
+			position.y <= result.z && position.y + size.y >= result.z;
 }
 
 BoundingBox BoundingBox::GetChildBoundingBox(int childQuadrant)
