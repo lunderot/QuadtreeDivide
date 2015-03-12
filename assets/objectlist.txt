@@ -1,1 +1,4 @@
-assets/models/camel.obj assets/textures/camel.raw 1.0 0.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 0.0 1.0 0.0 10.0 10.0 10.0 1.0
+assets/models/camel.obj assets/textures/camel.raw 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 16.0 16.0 16.0 1.0
+assets/models/camel.obj assets/textures/camel.raw 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 30.0 10.0 10.0 1.0
+assets/models/camel.obj assets/textures/camel.raw 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 192.0 192.0 192.0 1.0
+assets/models/camel.obj assets/textures/camel.raw 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 128.0 128.0 128.0 1.0
