@@ -68,10 +68,10 @@ Object::~Object()
 std::ofstream& operator<<(std::ofstream& file, const Object& object)
 {
 	file << "o " << object.modelFilename << " " << object.textureFilename;
-	file << object.worldTransform.m[0][0] << object.worldTransform.m[0][1] << object.worldTransform.m[0][2] << object.worldTransform.m[0][3]
-		<< object.worldTransform.m[1][0] << object.worldTransform.m[1][1] << object.worldTransform.m[1][2] << object.worldTransform.m[1][3]
-		<< object.worldTransform.m[2][0] << object.worldTransform.m[2][1] << object.worldTransform.m[2][2] << object.worldTransform.m[2][3]
-		<< object.worldTransform.m[3][0] << object.worldTransform.m[3][1] << object.worldTransform.m[3][2] << object.worldTransform.m[3][3];
+	file	<< object.worldTransform.m[0][0] << " " << object.worldTransform.m[0][1] << " " << object.worldTransform.m[0][2] << " " << object.worldTransform.m[0][3]<< " " 
+			<< object.worldTransform.m[1][0] << " " << object.worldTransform.m[1][1] << " " << object.worldTransform.m[1][2] << " " << object.worldTransform.m[1][3]<< " " 
+			<< object.worldTransform.m[2][0] << " " << object.worldTransform.m[2][1] << " " << object.worldTransform.m[2][2] << " " << object.worldTransform.m[2][3]<< " " 
+			<< object.worldTransform.m[3][0] << " " << object.worldTransform.m[3][1] << " " << object.worldTransform.m[3][2] << " " << object.worldTransform.m[3][3];
 	return file;
 }
 

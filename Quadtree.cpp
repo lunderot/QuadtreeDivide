@@ -15,7 +15,7 @@ Quadtree::Node::~Node()
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		delete objects.at(i);
+		//delete objects.at(i);
 	}
 }
 
@@ -77,7 +77,7 @@ void Quadtree::WriteNode(std::ofstream& file, Node* currentNode)
 			WriteNode(file, currentNode->child[i]);
 		}
 	}
-	file << "e";
+	file << "e"<< endl;
 }
 Quadtree::Node* Quadtree::ReadNode(std::ifstream& file)
 {
