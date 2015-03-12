@@ -1,5 +1,6 @@
 #include "BoundingBox.h"
 
+using namespace std;
 using namespace DirectX;
 
 BoundingBox::BoundingBox()
@@ -32,21 +33,21 @@ XMFLOAT2 BoundingBox::GetSize()
 
 bool BoundingBox::IsObjectIntersecting(const Object& object)
 {
-	for (int i = 0; i < object.faces.size(); i++)
+	for (vector<Triangle>::const_iterator i = object.faces.begin(); i != object.faces.end(); ++i)
 	{
-		if (IsTriangleIntersecting(object.faces[i], object.worldTransform))
+		if (IsTriangleIntersecting(*i, object.worldTransform))
 		{
 			return true;
 		}
-	}
+	} 
 	return false;
 }
 
 bool BoundingBox::IsObjectWithin(const Object& object)
 {
-	for (int i = 0; i < object.faces.size(); i++)
+	for (vector<Triangle>::const_iterator i = object.faces.begin(); i != object.faces.end(); ++i)
 	{
-		if (!IsTriangleWithin(object.faces[i], object.worldTransform))
+		if (!IsTriangleWithin(*i, object.worldTransform))
 		{
 			return false;
 		}

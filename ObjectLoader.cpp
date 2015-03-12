@@ -28,9 +28,9 @@ ObjectLoader::ObjectLoader(std::string filename)
 
 ObjectLoader::~ObjectLoader()
 {
-	for (int i = 0; i < objects.size(); i++)
+	for (vector<Object*>::iterator i = objects.begin(); i != objects.end(); ++i)
 	{
-		delete objects[i];
+		delete *i;
 	}
 }
 

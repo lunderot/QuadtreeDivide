@@ -13,10 +13,6 @@ Quadtree::Node::Node()
 
 Quadtree::Node::~Node()
 {
-	for (int i = 0; i < objects.size(); i++)
-	{
-		//delete objects.at(i);
-	}
 }
 
 Quadtree::Quadtree(BoundingBox rootBoundingBox)
@@ -65,9 +61,9 @@ void Quadtree::ReadFromFile(std::string filename)
 
 void Quadtree::WriteNode(std::ofstream& file, Node* currentNode)
 {
-	for (int i = 0; i < currentNode->objects.size(); i++)
+	for (vector<Object*>::iterator i = currentNode->objects.begin(); i != currentNode->objects.end(); ++i)
 	{
-		file << *currentNode->objects.at(i) << endl;
+		file << **i << endl;
 	}
 	for (int i = 0; i < 4; i++)
 	{
