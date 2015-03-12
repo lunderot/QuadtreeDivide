@@ -114,5 +114,5 @@ BoundingBox BoundingBox::GetChildBoundingBox(int childQuadrant)
 		break;
 	}
 
-	return BoundingBox(position, size);
+	return BoundingBox(childPosition, childSize);
 }
