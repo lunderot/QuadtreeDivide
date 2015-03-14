@@ -36,6 +36,7 @@ void Quadtree::Clean(Node* currentNode)
 			Clean(currentNode->child[i]);
 		}
 		delete currentNode;
+		currentNode = nullptr;
 	}
 }
 
@@ -54,6 +55,7 @@ void Quadtree::ReadFromFile(std::string filename)
 	ifstream file(filename);
 	if (file.good())
 	{
+		//Clean(root);
 		root = ReadNode(file);
 	}
 	file.close();
@@ -78,30 +80,34 @@ void Quadtree::WriteNode(std::ofstream& file, Node* currentNode)
 Quadtree::Node* Quadtree::ReadNode(std::ifstream& file)
 {
 	string command;
-	file >> command;
+	
 	Node* currentNode = new Node();
-	if (command == "o")
+	while (!file.eof())
 	{
-		string objectFilename;
-		string textureFilename;
-		XMFLOAT4X4 worldTransform;
-		file >> objectFilename >> textureFilename;
-		file >> worldTransform.m[0][0] >> worldTransform.m[0][1] >> worldTransform.m[0][2] >> worldTransform.m[0][3]
-			>> worldTransform.m[1][0] >> worldTransform.m[1][1] >> worldTransform.m[1][2] >> worldTransform.m[1][3]
-			>> worldTransform.m[2][0] >> worldTransform.m[2][1] >> worldTransform.m[2][2] >> worldTransform.m[2][3]
-			>> worldTransform.m[3][0] >> worldTransform.m[3][1] >> worldTransform.m[3][2] >> worldTransform.m[3][3];
+		file >> command;
+		if (command == "o")
+		{
+			string objectFilename;
+			string textureFilename;
+			XMFLOAT4X4 worldTransform;
+			file >> objectFilename >> textureFilename;
+			file >> worldTransform.m[0][0] >> worldTransform.m[0][1] >> worldTransform.m[0][2] >> worldTransform.m[0][3]
+				>> worldTransform.m[1][0] >> worldTransform.m[1][1] >> worldTransform.m[1][2] >> worldTransform.m[1][3]
+				>> worldTransform.m[2][0] >> worldTransform.m[2][1] >> worldTransform.m[2][2] >> worldTransform.m[2][3]
+				>> worldTransform.m[3][0] >> worldTransform.m[3][1] >> worldTransform.m[3][2] >> worldTransform.m[3][3];
 
-		currentNode->objects.push_back(new Object(objectFilename, textureFilename, worldTransform));
-	}
-	else if (command == "c")
-	{
-		int childNum;
-		file >> childNum;
-		ReadNode(file);
-	}
-	else if (command == "e")
-	{
-		return currentNode;
+			currentNode->objects.push_back(new Object(objectFilename, textureFilename, worldTransform));
+		}
+		else if (command == "c")
+		{
+			int childNum;
+			file >> childNum;
+			currentNode->child[childNum] = ReadNode(file);
+		}
+		else if (command == "e")
+		{
+			return currentNode;
+		}
 	}
 }
 
