@@ -24,9 +24,9 @@ private:
 	const int MAX_DEPTH = 4;
 public:
 	Quadtree(BoundingBox rootBoundingBox);
+	Quadtree(std::string filename);
 	~Quadtree();
 	void SaveToFile(std::string filename);
-	void ReadFromFile(std::string filename);
 	void Insert(Object* object);
 
 private:

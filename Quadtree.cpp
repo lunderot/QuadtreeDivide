@@ -21,6 +21,20 @@ Quadtree::Quadtree(BoundingBox rootBoundingBox)
 	this->rootBoundingBox = rootBoundingBox;
 }
 
+Quadtree::Quadtree(std::string filename)
+{
+	ifstream file(filename);
+	if (file.good())
+	{
+		XMFLOAT2 position;
+		XMFLOAT2 size;
+		file >> position.x >> position.y >> size.x >> size.y;
+		rootBoundingBox = BoundingBox(position, size);
+		root = ReadNode(file);
+	}
+	file.close();
+}
+
 
 Quadtree::~Quadtree()
 {
@@ -45,18 +59,9 @@ void Quadtree::SaveToFile(std::string filename)
 	ofstream file(filename);
 	if (file.good())
 	{
+		file	<< rootBoundingBox.GetPosition().x << " " << rootBoundingBox.GetPosition().y << " "
+				<< rootBoundingBox.GetSize().x << " " << rootBoundingBox.GetSize().y << endl;
 		WriteNode(file, root);
-	}
-	file.close();
-}
-
-void Quadtree::ReadFromFile(std::string filename)
-{
-	ifstream file(filename);
-	if (file.good())
-	{
-		//Clean(root);
-		root = ReadNode(file);
 	}
 	file.close();
 }

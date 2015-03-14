@@ -29,8 +29,7 @@ int main()
 		tree.SaveToFile("assets/tree.txt");
 
 		//Test file reading
-		Quadtree tree2(BoundingBox(XMFLOAT2(0, 0), XMFLOAT2(256, 256)));
-		tree2.ReadFromFile("assets/tree.txt");
+		Quadtree tree2("assets/tree.txt");
 		tree2.SaveToFile("assets/tree2.txt");
 	}
 	catch (std::exception e)
