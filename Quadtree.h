@@ -21,7 +21,7 @@ private:
 	};
 	Node* root;
 	BoundingBox rootBoundingBox;
-	const int MAX_DEPTH = 4;
+	const int MAX_DEPTH = 10;
 public:
 	Quadtree(BoundingBox rootBoundingBox);
 	Quadtree(std::string filename);

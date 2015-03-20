@@ -19,7 +19,7 @@ int main()
 		//Test tree insert
 		ObjectLoader loader("assets/objectlist.txt");
 
-		Quadtree tree(BoundingBox(XMFLOAT2(0, 0), XMFLOAT2(256, 256)));
+		Quadtree tree(BoundingBox(XMFLOAT2(0, 0), XMFLOAT2(512, 512)));
 
 		for (int i = 0; i < loader.GetSize(); i++)
 		{
