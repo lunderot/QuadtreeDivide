@@ -27,10 +27,6 @@ int main()
 		}
 		//Test file saving
 		tree.SaveToFile("assets/tree.txt");
-
-		//Test file reading
-		Quadtree tree2("assets/tree.txt");
-		tree2.SaveToFile("assets/tree2.txt");
 	}
 	catch (std::exception e)
 	{
